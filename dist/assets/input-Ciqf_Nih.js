@@ -1,0 +1,1 @@
+import{r,j as e,g as o}from"./index-DFeRn6eq.js";const s=r.forwardRef(({className:a,...n},t)=>e.jsx("input",{ref:t,className:o("h-12 w-full rounded-2xl border border-avanta-navy/10 bg-white px-4 text-sm text-avanta-navy outline-none transition focus:border-avanta-green focus:ring-4 focus:ring-avanta-green/10",a),...n}));s.displayName="Input";export{s as I};

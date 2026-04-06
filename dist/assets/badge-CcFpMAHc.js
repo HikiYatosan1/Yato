@@ -1,0 +1,1 @@
+import{j as n,g as r}from"./index-DFeRn6eq.js";function s({className:e,...a}){return n.jsx("span",{className:r("inline-flex items-center rounded-full border border-avanta-green/15 bg-avanta-green/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-avanta-emerald",e),...a})}export{s as B};

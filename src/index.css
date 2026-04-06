@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Museo Sans Cyrl";
+  src: url("/brand/MuseoSansCyrl-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans Cyrl";
+  src: url("/brand/MuseoSansCyrl-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f4f8f7;
+  color: #102534;
+  font-family: "Museo Sans Cyrl", "Segoe UI", sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(58, 170, 53, 0.2);
+}
+
+@layer base {
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer utilities {
+  .bg-hero-grid {
+    background-size: 22px 22px;
+  }
+
+  .cut-corner {
+    clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  }
+
+  .cut-corner-sm {
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+
+  .triangle-grid {
+    background-image:
+      linear-gradient(135deg, rgba(58, 170, 53, 0.08) 25%, transparent 25%),
+      linear-gradient(225deg, rgba(24, 58, 99, 0.05) 25%, transparent 25%);
+    background-size: 34px 34px;
+  }
+
+  .panel-outline {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .panel-outline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(8, 58, 71, 0.08);
+    pointer-events: none;
+    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
