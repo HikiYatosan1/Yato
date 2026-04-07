@@ -1,5 +1,5 @@
 ﻿import { motion } from "motion/react";
-import { ArrowRight, MapPinned } from "lucide-react";
+import { ArrowRight, MapPinned, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   siteInternetEquipmentItems,
@@ -59,6 +59,17 @@ export function SiteInternetPage() {
                 <Link to={to("/?action=check-address#application")}>
                   <MapPinned className="h-4 w-4" />
                   Проверить адрес
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="secondary"
+                className="border-white/26 bg-white/10 text-white hover:bg-white/16"
+              >
+                <Link to={to("/tariff-calculator")}>
+                  <Sparkles className="h-4 w-4" />
+                  Подбор тарифа
                 </Link>
               </Button>
             </div>

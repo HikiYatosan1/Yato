@@ -41,11 +41,17 @@ const SiteBlogArticlePage = lazy(() =>
 const SiteSmartPage = lazy(() =>
   import("@/pages/site-smart-page").then((module) => ({ default: module.SiteSmartPage })),
 );
+const SiteHelpPage = lazy(() =>
+  import("@/pages/site-help-page").then((module) => ({ default: module.SiteHelpPage })),
+);
 const SitePaymentPage = lazy(() =>
   import("@/pages/site-payment-page").then((module) => ({ default: module.SitePaymentPage })),
 );
 const SiteContactsPage = lazy(() =>
   import("@/pages/site-contacts-page").then((module) => ({ default: module.SiteContactsPage })),
+);
+const SiteTariffCalculatorPage = lazy(() =>
+  import("@/pages/site-tariff-calculator-page").then((module) => ({ default: module.SiteTariffCalculatorPage })),
 );
 
 function AnimatedRoutes() {
@@ -66,6 +72,7 @@ function AnimatedRoutes() {
             <Route element={<SiteLayout mode="site" />}>
               <Route index element={<SiteHomePage />} />
               <Route path="/internet" element={<SiteInternetPage />} />
+              <Route path="/tariff-calculator" element={<SiteTariffCalculatorPage />} />
               <Route path="/tariffs" element={<Navigate to="/internet#tariffs" replace />} />
               <Route path="/tv" element={<SiteTvPage />} />
               <Route path="/surveillance" element={<SiteSurveillancePage />} />
@@ -73,6 +80,7 @@ function AnimatedRoutes() {
               <Route path="/blog" element={<SiteBlogPage />} />
               <Route path="/blog/:slug" element={<SiteBlogArticlePage />} />
               <Route path="/smart" element={<SiteSmartPage />} />
+              <Route path="/help" element={<SiteHelpPage />} />
               <Route path="/payment" element={<SitePaymentPage />} />
               <Route path="/pay" element={<Navigate to="/payment" replace />} />
               <Route path="/contacts" element={<SiteContactsPage />} />

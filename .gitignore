@@ -1,0 +1,10 @@
+﻿node_modules/
+dist/
+*.log
+*.tsbuildinfo
+.bin/
+.tunnel*
+.pinggy*
+.tmp-http*
+help_*.html
+help_parsed.json

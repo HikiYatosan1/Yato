@@ -45,11 +45,13 @@ function buildNavigation(mode: SiteMode, basePath: string): NavItem[] {
     return [
       { label: "Главная", href: prefixPath(basePath, "/") },
       { label: "Интернет", href: prefixPath(basePath, "/internet") },
+      { label: "Подбор тарифа", href: prefixPath(basePath, "/tariff-calculator") },
       { label: "ТВ", href: prefixPath(basePath, "/tv") },
       { label: "Видеонаблюдение", href: prefixPath(basePath, "/surveillance") },
       { label: "Акции", href: prefixPath(basePath, "/promotions") },
       { label: "Смарт", href: prefixPath(basePath, "/smart") },
       { label: "Блог", href: prefixPath(basePath, "/blog") },
+      { label: "Помощь", href: prefixPath(basePath, "/help") },
       { label: "Оплата", href: prefixPath(basePath, "/payment") },
       { label: "Контакты", href: prefixPath(basePath, "/contacts") },
     ];

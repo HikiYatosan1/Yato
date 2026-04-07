@@ -393,12 +393,22 @@ export function SiteHomePage() {
                 />
               </Reveal>
               <Reveal delay={0.05}>
-                <Button asChild size="lg" className={sectionActionClass}>
-                  <Link to={to("/internet#tariffs")}>
-                    Все тарифы
-                    <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </Button>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild size="lg" className={sectionActionClass}>
+                    <Link to={to("/internet#tariffs")}>
+                      Все тарифы
+                      <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-avanta-navy/12 bg-white/85 px-5 text-avanta-navy hover:border-avanta-green/25 hover:text-avanta-emerald"
+                  >
+                    <Link to={to("/tariff-calculator")}>Подбор тарифа</Link>
+                  </Button>
+                </div>
               </Reveal>
             </div>
 
