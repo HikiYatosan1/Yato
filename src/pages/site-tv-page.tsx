@@ -1,5 +1,5 @@
 ﻿import { motion } from "motion/react";
-import { ArrowRight, Check, Tv } from "lucide-react";
+import { ArrowRight, Check, Clapperboard, Film, MonitorPlay, Star, Tv, Tv2, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { siteTariffs, siteTvBenefits, siteTvPackages, siteTvPlatforms } from "@/data/site-content";
 import { CTASection } from "@/components/cta-section";
@@ -14,6 +14,8 @@ import { useSiteMode } from "@/lib/site-mode";
 import { cn } from "@/lib/utils";
 
 const comboTariffs = siteTariffs.filter((item) => item.category === "bundle").slice(0, 4);
+const tvPackageIcons = [Tv2, MonitorPlay, Star, Clapperboard] as const;
+const comboTariffIcons = [Film, Sparkles, Tv2, MonitorPlay] as const;
 
 export function SiteTvPage() {
   const { to } = useSiteMode();
@@ -23,32 +25,48 @@ export function SiteTvPage() {
       <div className="container space-y-20 pt-10">
         <section className="cut-corner relative overflow-hidden rounded-[38px] bg-avanta-gradient px-6 py-10 text-white shadow-float sm:px-10">
           <div className="absolute right-0 top-0 h-40 w-40 translate-x-10 -translate-y-10 rotate-45 bg-white/10" />
-          <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/70">Телевидение</p>
-            <h1 className="mt-4 max-w-4xl font-display text-4xl font-bold leading-tight sm:text-5xl">
-              Цифровое ТВ, Смотрёшка и пакеты интернет + ТВ
-            </h1>
-            <p className="mt-5 max-w-3xl text-base leading-7 text-white/80">
-              Подключайте телевидение на Smart TV, смартфонах и ноутбуках, выбирайте пакет каналов и подключайте
-              интернет + ТВ одной заявкой.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="bg-white text-avanta-navy hover:bg-white/92 hover:text-avanta-navy">
-                <Link to={to("/?action=tv#application")}>
-                  Подключить ТВ
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="secondary"
-                size="lg"
-                className="border-white/25 bg-white/10 text-white backdrop-blur-sm hover:border-white/40 hover:bg-white/16 hover:text-white"
-              >
-                <Link to={to("/internet?tab=bundle#tariffs")}>Пакеты интернет + ТВ</Link>
-              </Button>
-            </div>
-          </Reveal>
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+            <Reveal>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/70">Телевидение</p>
+                <h1 className="mt-4 max-w-4xl font-display text-4xl font-bold leading-tight sm:text-5xl">
+                  Цифровое ТВ, Смотрёшка и пакеты интернет + ТВ
+                </h1>
+                <p className="mt-5 max-w-3xl text-base leading-7 text-white/80">
+                  Подключайте телевидение на Smart TV, смартфонах и ноутбуках, выбирайте пакет каналов и подключайте
+                  интернет + ТВ одной заявкой.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="bg-white text-avanta-navy hover:bg-white/92 hover:text-avanta-navy">
+                    <Link to={to("/?action=tv#application")}>
+                      Подключить ТВ
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="secondary"
+                    size="lg"
+                    className="border-white/25 bg-white/10 text-white backdrop-blur-sm hover:border-white/40 hover:bg-white/16 hover:text-white"
+                  >
+                    <Link to={to("/internet-tv#tariffs")}>Пакеты интернет + ТВ</Link>
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="rounded-[28px] border border-white/20 bg-white/8 p-3 backdrop-blur-sm">
+                <div className="overflow-hidden rounded-[20px] border border-white/16 bg-[#0d3552]/20 p-3">
+                  <img
+                    src="/site/tv/hero-tv.jpg"
+                    alt="Цифровое телевидение и Смотрёшка"
+                    className="h-[280px] w-full rounded-[14px] border border-white/20 bg-white object-cover object-center"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </section>
 
         <section>
@@ -79,6 +97,10 @@ export function SiteTvPage() {
           <div className="mt-8 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
             {siteTvPackages.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.06}>
+                {(() => {
+                  const Icon = tvPackageIcons[index % tvPackageIcons.length];
+
+                  return (
                 <Card
                   className={cn(
                     "relative flex h-full flex-col overflow-hidden border-avanta-green/18 bg-[linear-gradient(135deg,rgba(255,255,255,0.98)_0%,rgba(247,252,249,0.98)_48%,rgba(225,245,234,0.98)_100%)] p-5",
@@ -89,7 +111,7 @@ export function SiteTvPage() {
 
                   <div className="relative z-10 flex items-start justify-between gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-avanta-green/15 to-avanta-navy/10 text-avanta-emerald">
-                      <Tv className="h-6 w-6" />
+                      <Icon className="h-6 w-6" />
                     </div>
                     {item.badge ? <Badge>{item.badge}</Badge> : null}
                   </div>
@@ -120,6 +142,8 @@ export function SiteTvPage() {
                     </Button>
                   </div>
                 </Card>
+                  );
+                })()}
               </Reveal>
             ))}
           </div>
@@ -136,7 +160,7 @@ export function SiteTvPage() {
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {comboTariffs.map((tariff, index) => (
               <Reveal key={tariff.id} delay={index * 0.06}>
-                <TariffCard tariff={tariff} />
+                <TariffCard tariff={tariff} iconOverride={comboTariffIcons[index % comboTariffIcons.length]} />
               </Reveal>
             ))}
           </div>
@@ -202,7 +226,7 @@ export function SiteTvPage() {
           description="Если уже выбрали пакет, можно сразу перейти к форме. Если сначала хотите сравнить все варианты, используйте раздел с тарифами выше."
           primaryHref="/?action=tv#application"
           primaryLabel="Подключить ТВ"
-          secondaryHref="/internet?tab=bundle#tariffs"
+          secondaryHref="/internet-tv#tariffs"
           secondaryLabel="Посмотреть пакеты"
         />
       </div>

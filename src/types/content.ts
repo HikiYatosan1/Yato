@@ -19,6 +19,8 @@ export type FeatureItem = {
   description: string;
   icon: LucideIcon;
   accent: string;
+  imageUrl?: string;
+  imageClassName?: string;
 };
 
 export type ServiceItem = {
@@ -73,6 +75,7 @@ export type VideoPackage = {
   price: string;
   description: string;
   features: string[];
+  icon?: LucideIcon;
   badge?: string;
   popular?: boolean;
 };
@@ -117,6 +120,8 @@ export type TVPlatform = {
   title: string;
   description: string;
   icon: LucideIcon;
+  imageUrl?: string;
+  imageClassName?: string;
 };
 
 export type BlogPost = {

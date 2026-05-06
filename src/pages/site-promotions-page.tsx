@@ -13,16 +13,40 @@ export function SitePromotionsPage() {
           <div className="absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.06))]" />
           <div className="absolute right-0 top-0 h-40 w-40 translate-x-10 -translate-y-10 rotate-45 bg-white/10" />
 
-          <Reveal>
-            <p className="relative text-sm font-semibold uppercase tracking-[0.22em] text-white/70">Акции</p>
-            <h1 className="relative mt-4 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
-              Актуальные предложения и полезные сервисы для абонентов
-            </h1>
-            <p className="relative mt-5 max-w-3xl text-base leading-7 text-white/80">
-              Здесь собраны действующие акции и сервисные предложения, которые помогают быстрее оформить
-              подключение и удобнее пользоваться услугами.
-            </p>
-          </Reveal>
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+            <Reveal>
+              <div>
+                <p className="relative text-sm font-semibold uppercase tracking-[0.22em] text-white/70">Акции</p>
+                <h1 className="relative mt-4 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+                  Актуальные предложения и полезные сервисы для абонентов
+                </h1>
+                <p className="relative mt-5 max-w-3xl text-base leading-7 text-white/80">
+                  Здесь собраны действующие акции и сервисные предложения, которые помогают быстрее оформить
+                  подключение и удобнее пользоваться услугами.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="overflow-hidden rounded-[18px] border border-white/24 bg-white/10">
+                  <img
+                    src="/site/promotions/max-speed.jpg"
+                    alt="Акции на подключение"
+                    className="h-[180px] w-full object-cover object-center"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[18px] border border-white/24 bg-white/10">
+                  <img
+                    src="/site/promotions/friend.jpg"
+                    alt="Спецпредложения Аванта Телеком"
+                    className="h-[180px] w-full object-cover object-center"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </section>
 
         <section className="grid gap-6 md:grid-cols-2">

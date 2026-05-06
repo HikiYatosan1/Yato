@@ -23,6 +23,9 @@ const SiteHomePage = lazy(() =>
 const SiteInternetPage = lazy(() =>
   import("@/pages/site-internet-page").then((module) => ({ default: module.SiteInternetPage })),
 );
+const SiteBusinessPage = lazy(() =>
+  import("@/pages/site-business-page").then((module) => ({ default: module.SiteBusinessPage })),
+);
 const SiteTvPage = lazy(() =>
   import("@/pages/site-tv-page").then((module) => ({ default: module.SiteTvPage })),
 );
@@ -71,9 +74,14 @@ function AnimatedRoutes() {
           <Routes location={location} key={location.pathname + location.search + location.hash}>
             <Route element={<SiteLayout mode="site" />}>
               <Route index element={<SiteHomePage />} />
-              <Route path="/internet" element={<SiteInternetPage />} />
+              <Route path="/internet" element={<Navigate to="/internet-apartment" replace />} />
+              <Route path="/internet-apartment" element={<SiteInternetPage section="apartment" />} />
+              <Route path="/internet-house" element={<SiteInternetPage section="house" />} />
+              <Route path="/internet-tv" element={<SiteInternetPage section="bundle" />} />
+              <Route path="/business" element={<SiteBusinessPage />} />
+              <Route path="/business/:section" element={<SiteBusinessPage />} />
               <Route path="/tariff-calculator" element={<SiteTariffCalculatorPage />} />
-              <Route path="/tariffs" element={<Navigate to="/internet#tariffs" replace />} />
+              <Route path="/tariffs" element={<Navigate to="/internet-apartment#tariffs" replace />} />
               <Route path="/tv" element={<SiteTvPage />} />
               <Route path="/surveillance" element={<SiteSurveillancePage />} />
               <Route path="/promotions" element={<SitePromotionsPage />} />

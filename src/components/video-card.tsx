@@ -27,6 +27,7 @@ export function VideoCard({ item }: VideoCardProps) {
 
   if (isPackage) {
     const packageMeta = item.features.slice(0, 2).join(" · ");
+    const PackageIcon = item.icon ?? Camera;
 
     return (
       <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }} className="h-full">
@@ -35,7 +36,7 @@ export function VideoCard({ item }: VideoCardProps) {
 
           <div className="relative z-10 flex items-start justify-between gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-[18px] bg-gradient-to-br from-avanta-green/15 to-avanta-navy/10 text-avanta-emerald">
-              <Camera className="h-6 w-6" />
+              <PackageIcon className="h-6 w-6" />
             </div>
             {item.badge ? <Badge>{item.badge}</Badge> : null}
           </div>

@@ -7,8 +7,8 @@ import { SectionHeader } from "@/components/section-header";
 import { TariffTabs } from "@/components/tariff-tabs";
 
 const highlights = [
-  { icon: Network, title: "XPON", description: "Тарифы для многоквартирных домов по технологии XPON." },
-  { icon: Cable, title: "FTTH", description: "Отдельная линейка FTTH для доступных адресов." },
+  { icon: Network, title: "Квартира", description: "Тарифы для многоквартирных домов и повседневных онлайн-задач." },
+  { icon: Cable, title: "Домашний интернет", description: "Дополнительные варианты подключения для доступных адресов." },
   { icon: House, title: "Частный дом", description: "Тарифы для подключения интернета в доме." },
   { icon: Tv, title: "Интернет + ТВ", description: "Пакеты для тех, кому нужен интернет и телевидение в одном тарифе." },
 ];
@@ -23,7 +23,7 @@ export function SiteTariffsPage() {
             <SectionHeader
               eyebrow="Тарифы"
               title="Подберите тариф для квартиры, дома или пакета интернет + ТВ"
-              description="Сравните тарифные линейки XPON, FTTH, решения для частного дома и пакеты с телевидением."
+description="Сравните тарифы для квартиры, решения для частного дома и пакеты с телевидением."
             />
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {highlights.map((item, index) => {

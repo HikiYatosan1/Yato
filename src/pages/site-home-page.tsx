@@ -1,15 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Cable,
-  House,
-  ShieldCheck,
-  Smartphone,
-  Tv,
-  Wifi,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, House, ShieldCheck, Smartphone, Tv, Wifi } from "lucide-react";
 import { Link } from "react-router-dom";
 import { siteBrandBanners, siteFaqItems, siteTariffs } from "@/data/site-content";
 import { siteBlogPosts } from "@/data/site-blog-content";
@@ -37,22 +28,13 @@ const formatFromPrice = (price: string) => {
 
 const homeTariffCards = [
   {
-    title: "Квартира XPON",
+    title: "Интернет в квартиру",
     badge: "Для квартиры",
     price: formatFromPrice(siteTariffs.find((item) => item.category === "xpon")?.price ?? "720 ₽/мес"),
     speed: "100-500 Мбит/с",
     description: "Стабильный интернет для многоквартирного дома и повседневных задач.",
-    href: "/internet?tab=xpon#tariffs",
+    href: "/internet-apartment#tariffs",
     icon: Wifi,
-  },
-  {
-    title: "Квартира FTTH",
-    badge: "FTTH",
-    price: formatFromPrice(siteTariffs.find((item) => item.category === "ftth")?.price ?? "550 ₽/мес"),
-    speed: "50-100 Мбит/с",
-    description: "Линейка для адресов, где доступна технология FTTH.",
-    href: "/internet?tab=ftth#tariffs",
-    icon: Cable,
   },
   {
     title: "Частный дом",
@@ -60,7 +42,7 @@ const homeTariffCards = [
     price: formatFromPrice(siteTariffs.find((item) => item.category === "house")?.price ?? "980 ₽/мес"),
     speed: "100-500 Мбит/с",
     description: "Подключение по адресу с подбором скорости и удобного сценария.",
-    href: "/internet?tab=house#tariffs",
+    href: "/internet-house#tariffs",
     icon: House,
   },
   {
@@ -69,7 +51,7 @@ const homeTariffCards = [
     price: formatFromPrice(siteTariffs.find((item) => item.category === "bundle")?.price ?? "715 ₽/мес"),
     speed: "50-500 Мбит/с",
     description: "Пакеты со Смотрёшкой, архивом и одним подключением.",
-    href: "/internet?tab=bundle#tariffs",
+    href: "/internet-tv#tariffs",
     icon: Tv,
   },
 ];
@@ -83,12 +65,12 @@ export function SiteHomePage() {
       label: "Интернет",
       eyebrow: "Для дома и квартиры",
       title: "Домашний интернет для квартиры и частного дома",
-      description: "XPON, FTTH и подключение по адресу в одном разделе.",
-      price: formatFromPrice(siteTariffs.find((item) => item.category === "ftth")?.price ?? "550 ₽/мес"),
+      description: "Тарифы для квартиры, частного дома и пакеты с телевидением.",
+      price: formatFromPrice(siteTariffs.find((item) => item.category === "xpon")?.price ?? "720 ₽/мес"),
       hint: "До 500 Мбит/с",
       primaryLabel: "Смотреть тарифы",
-      primaryHref: "/internet#tariffs",
-      imageUrl: "/site/blog/internet-home.png",
+      primaryHref: "/internet-apartment#tariffs",
+      imageUrl: "/site/home/hero/internet.jpg",
       icon: Wifi,
       themeClass: "from-avanta-teal via-avanta-green to-avanta-navy",
       imageClassName: "object-cover object-[center_50%]",
@@ -103,7 +85,7 @@ export function SiteHomePage() {
       hint: "Пакеты каналов",
       primaryLabel: "Перейти в ТВ",
       primaryHref: "/tv",
-      imageUrl: "/site/blog/digital-tv.png",
+      imageUrl: "/site/home/hero/tv.jpg",
       icon: Tv,
       themeClass: "from-avanta-green via-avanta-emerald to-avanta-navy",
       imageClassName: "object-cover object-center",
@@ -118,7 +100,7 @@ export function SiteHomePage() {
       hint: "Камеры и архив",
       primaryLabel: "Смотреть камеры",
       primaryHref: "/surveillance",
-      imageUrl: "/site/blog/cloud-cctv.png",
+      imageUrl: "/site/home/hero/surveillance.jpg",
       icon: ShieldCheck,
       themeClass: "from-avanta-green via-avanta-teal to-avanta-navy",
       imageClassName: "object-cover object-center",
@@ -133,7 +115,7 @@ export function SiteHomePage() {
       hint: "Домофон и доступ",
       primaryLabel: "Открыть смарт",
       primaryHref: "/smart",
-      imageUrl: "/site/blog/umnyy-domofon.png",
+      imageUrl: "/site/home/hero/smart.jpg",
       icon: Smartphone,
       themeClass: "from-avanta-navy via-avanta-teal to-avanta-green",
       imageClassName: "object-cover object-center",
@@ -143,11 +125,11 @@ export function SiteHomePage() {
   const heroSlideDisplay = {
     internet: {
       title: "Интернет для дома и квартиры",
-      description: "XPON, FTTH и подключение по адресу.",
-      price: formatFromPrice(siteTariffs.find((item) => item.category === "ftth")?.price ?? "550 ₽/мес"),
+      description: "Тарифы для квартиры, частного дома и пакеты с ТВ.",
+      price: formatFromPrice(siteTariffs.find((item) => item.category === "xpon")?.price ?? "720 ₽/мес"),
       hint: "До 500 Мбит/с",
-      points: ["XPON", "FTTH", "Подключение по адресу"],
-      imageUrl: "/site/blog/internet-home.png",
+      points: ["Квартира", "Частный дом", "Интернет + ТВ"],
+      imageUrl: "/site/home/hero/internet.jpg",
       stageClassName: "from-[#23a246] via-[#178b66] to-[#123e63]",
       imageClassName: "object-cover object-[center_50%]",
       ctaLabel: "Смотреть тарифы",
@@ -158,7 +140,7 @@ export function SiteHomePage() {
       price: "от 249 ₽/мес",
       hint: "Пакеты каналов",
       points: ["Архив эфира", "Пауза", "Смотрёшка"],
-      imageUrl: "/site/blog/digital-tv.png",
+      imageUrl: "/site/home/hero/tv.jpg",
       stageClassName: "from-[#1d8b4e] via-[#177a61] to-[#1b4964]",
       imageClassName: "object-cover object-[center_52%]",
       ctaLabel: "Перейти в ТВ",
@@ -169,7 +151,7 @@ export function SiteHomePage() {
       price: "от 100 ₽/мес",
       hint: "Камеры и архив",
       points: ["Онлайн-доступ", "Архив", "Подбор под объект"],
-      imageUrl: "/site/blog/cloud-cctv.png",
+      imageUrl: "/site/home/hero/surveillance.jpg",
       stageClassName: "from-[#17884f] via-[#14776f] to-[#183a63]",
       imageClassName: "object-cover object-[center_42%]",
       ctaLabel: "Смотреть камеры",
@@ -180,7 +162,7 @@ export function SiteHomePage() {
       price: "Смарт-сервисы",
       hint: "Домофон и доступ",
       points: ["Мобильный ключ", "QR для гостей", "Домофон в приложении"],
-      imageUrl: "/site/blog/umnyy-domofon.png",
+      imageUrl: "/site/home/hero/smart.jpg",
       stageClassName: "from-[#155768] via-[#176873] to-[#239347]",
       imageClassName: "object-cover object-[center_47%]",
       ctaLabel: "Открыть Смарт",
@@ -395,7 +377,7 @@ export function SiteHomePage() {
               <Reveal delay={0.05}>
                 <div className="flex flex-wrap gap-3">
                   <Button asChild size="lg" className={sectionActionClass}>
-                    <Link to={to("/internet#tariffs")}>
+                    <Link to={to("/internet-apartment#tariffs")}>
                       Все тарифы
                       <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
@@ -412,7 +394,7 @@ export function SiteHomePage() {
               </Reveal>
             </div>
 
-            <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mx-auto mt-8 grid max-w-[1080px] justify-center gap-6 md:grid-cols-2 xl:grid-cols-3">
               {homeTariffCards.map((item, index) => {
                 const Icon = item.icon;
 
@@ -565,4 +547,5 @@ export function SiteHomePage() {
     </motion.div>
   );
 }
+
 

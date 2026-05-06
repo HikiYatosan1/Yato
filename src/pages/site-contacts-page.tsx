@@ -3,7 +3,6 @@ import { Clock3, Map } from "lucide-react";
 import { Link } from "react-router-dom";
 import { siteContactMethods } from "@/data/site-content";
 import { Reveal } from "@/components/reveal";
-import { SectionHeader } from "@/components/section-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useSiteMode } from "@/lib/site-mode";
@@ -14,16 +13,23 @@ export function SiteContactsPage() {
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
       <div className="container space-y-14 pt-10">
-        <section>
+        <section className="relative overflow-hidden rounded-[38px] border border-avanta-green/12 bg-[linear-gradient(135deg,#f8fcfa_0%,#eef6f2_52%,#e7f0ec_100%)] px-6 py-8 shadow-float sm:px-8 sm:py-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(58,170,53,0.11),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(24,58,99,0.1),transparent_42%)]" />
           <Reveal>
-            <SectionHeader
-              eyebrow="Контакты"
-              title="Свяжитесь с Аванта Телеком удобным способом"
-              description="На этой странице собраны телефоны, почта, офис и режим работы. Заявка на подключение и проверка адреса находятся на главной странице."
-            />
+            <div className="relative z-10 max-w-5xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-avanta-emerald">Контакты</p>
+              <h1 className="mt-4 max-w-4xl font-display text-4xl font-bold leading-tight text-avanta-navy sm:text-5xl">
+                Свяжитесь с Аванта Телеком удобным способом
+              </h1>
+              <p className="mt-5 max-w-3xl text-base leading-7 text-avanta-graphite sm:text-lg">
+                На этой странице собраны телефоны, почта, офис и режим работы. Заявка на подключение и проверка адреса находятся на главной странице.
+              </p>
+            </div>
           </Reveal>
+        </section>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <section>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
             {siteContactMethods.map((item, index) => {
               const Icon = item.icon;
 
@@ -99,4 +105,3 @@ export function SiteContactsPage() {
     </motion.div>
   );
 }
-

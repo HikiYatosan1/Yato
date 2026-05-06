@@ -498,7 +498,7 @@ export function SiteTariffCalculatorPage() {
                       </Link>
                     </Button>
                     <Button asChild variant="outline" className="h-11 border-avanta-navy/14 bg-white/90 px-5">
-                      <Link to={to("/internet#tariffs")}>
+                      <Link to={to("/internet-apartment#tariffs")}>
                         <House className="h-4 w-4" />
                         Сравнить все тарифы
                       </Link>

@@ -8,3 +8,4 @@ dist/
 .tmp-http*
 help_*.html
 help_parsed.json
+.vercel

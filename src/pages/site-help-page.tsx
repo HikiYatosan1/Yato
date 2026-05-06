@@ -62,50 +62,48 @@ export function SiteHelpPage() {
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
       <div className="container space-y-14 pt-10">
-        <section className="cut-corner relative overflow-hidden rounded-[38px] bg-avanta-gradient px-6 py-10 text-white shadow-float sm:px-10 sm:py-12">
-          <div className="absolute right-0 top-0 h-40 w-40 translate-x-10 -translate-y-10 rotate-45 bg-white/10" />
-          <div className="absolute bottom-0 left-0 h-48 w-48 -translate-x-16 translate-y-16 rounded-full bg-white/8 blur-2xl" />
+        <section className="relative overflow-hidden rounded-[38px] border border-avanta-green/12 bg-[linear-gradient(135deg,#f8fcfa_0%,#eef6f2_52%,#e7f0ec_100%)] px-6 py-8 shadow-float sm:px-8 sm:py-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(58,170,53,0.11),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(24,58,99,0.1),transparent_42%)]" />
           <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/72">Помощь абоненту</p>
-            <h1 className="mt-4 max-w-4xl font-display text-4xl font-bold leading-tight sm:text-5xl">
-              Центр помощи абоненту Аванта Телеком
-            </h1>
-            <p className="mt-5 max-w-3xl text-base leading-7 text-white/82">
-              Здесь собраны ответы на самые частые вопросы: подключение, личный кабинет, оплата и баланс, телевидение,
-              проверка скорости и техническая поддержка. Выберите раздел слева и быстро найдите нужную информацию.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.08}>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button asChild size="lg" className="bg-white text-avanta-navy hover:bg-white/92">
-                <a href="https://lc.avanta-telecom.ru/cabinet/login" target="_blank" rel="noreferrer">
-                  <LogIn className="h-4 w-4" />
-                  Личный кабинет
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="secondary"
-                className="border-transparent bg-white/10 text-white hover:border-transparent hover:bg-white/16 hover:text-white"
-              >
-                <Link to={to("/payment")}>
-                  <CreditCard className="h-4 w-4" />
-                  Оплата и баланс
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="secondary"
-                className="border-transparent bg-white/10 text-white hover:border-transparent hover:bg-white/16 hover:text-white"
-              >
-                <Link to={to("/contacts")}>
-                  <LifeBuoy className="h-4 w-4" />
-                  Техподдержка
-                </Link>
-              </Button>
+            <div className="relative z-10 max-w-5xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-avanta-emerald">Помощь абоненту</p>
+              <h1 className="mt-4 max-w-4xl font-display text-4xl font-bold leading-tight text-avanta-navy sm:text-5xl">
+                Центр помощи абоненту Аванта Телеком
+              </h1>
+              <p className="mt-5 max-w-3xl text-base leading-7 text-avanta-graphite sm:text-lg">
+                Здесь собраны ответы на самые частые вопросы: подключение, личный кабинет, оплата и баланс, телевидение,
+                проверка скорости и техническая поддержка. Выберите раздел слева и быстро найдите нужную информацию.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button asChild size="lg">
+                  <a href="https://lc.avanta-telecom.ru/cabinet/login" target="_blank" rel="noreferrer">
+                    <LogIn className="h-4 w-4" />
+                    Личный кабинет
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-avanta-navy/16 bg-white/88 text-avanta-navy hover:border-avanta-green/28 hover:text-avanta-emerald"
+                >
+                  <Link to={to("/payment")}>
+                    <CreditCard className="h-4 w-4" />
+                    Оплата и баланс
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-avanta-navy/16 bg-white/88 text-avanta-navy hover:border-avanta-green/28 hover:text-avanta-emerald"
+                >
+                  <Link to={to("/contacts")}>
+                    <LifeBuoy className="h-4 w-4" />
+                    Техподдержка
+                  </Link>
+                </Button>
+              </div>
             </div>
           </Reveal>
         </section>
@@ -148,13 +146,6 @@ export function SiteHelpPage() {
                           <Icon className="h-4 w-4" />
                         </span>
                         <span className="min-w-0 flex-1 truncate text-sm font-semibold text-avanta-navy">{section.title}</span>
-                        <span
-                          className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                            isActive ? "bg-avanta-green/22 text-avanta-emerald" : "bg-avanta-navy/8 text-avanta-navy/70"
-                          }`}
-                        >
-                          {section.items.length}
-                        </span>
                       </button>
                     );
                   })}

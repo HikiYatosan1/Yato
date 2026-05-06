@@ -2,6 +2,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   BadgePercent,
+  Building2,
   Cable,
   CircleHelp,
   CreditCard,
@@ -31,6 +32,7 @@ type MobileMenuProps = {
 const navIcons: Record<string, LucideIcon> = {
   Главная: House,
   Интернет: Wifi,
+  "Для бизнеса": Building2,
   "Подбор тарифа": SlidersHorizontal,
   ТВ: Tv,
   Видеонаблюдение: ShieldCheck,
@@ -41,12 +43,48 @@ const navIcons: Record<string, LucideIcon> = {
   Оплата: CreditCard,
   Контакты: MapPinned,
   Тарифы: Cable,
+  "Интернет в квартиру": Wifi,
+  "Интернет в частный дом": House,
+  "Интернет + ТВ": Tv,
 };
+
+const b2bSectionItems = [
+  { label: "Обзор", href: "/business" },
+  { label: "Интернет", href: "/business/internet" },
+  { label: "Видеонаблюдение", href: "/business/surveillance" },
+  { label: "Умные сервисы", href: "/business/smart" },
+  { label: "Оборудование", href: "/business/equipment" },
+  { label: "Сервисные услуги", href: "/business/services" },
+  { label: "Инфраструктура", href: "/business/infrastructure" },
+] as const;
 
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const location = useLocation();
   const { mode, navigation, switchHref, switchLabel, to } = useSiteMode();
   const homeHref = to("/");
+  const businessHref = to("/business");
+  const isBusinessRoute =
+    mode === "site" &&
+    (location.pathname === businessHref || location.pathname.startsWith(`${businessHref}/`));
+  const connectHref = isBusinessRoute
+    ? `${businessHref}?action=connect#application`
+    : to("/?action=connect#application");
+  const checkAddressHref = isBusinessRoute
+    ? `${businessHref}?action=check-address#application`
+    : to("/?action=check-address#application");
+  const businessItem = mode === "site" ? navigation.find((item) => item.label === "Для бизнеса") ?? null : null;
+  const menuNavigation =
+    mode === "site" ? navigation.filter((item) => item.label !== "Для бизнеса") : navigation;
+  const businessSectionNavigation = b2bSectionItems.map((item) => ({ ...item, href: to(item.href) }));
+
+  const openBusinessRequestModal = () => {
+    window.dispatchEvent(
+      new CustomEvent("open-business-request", {
+        detail: { action: "connect" },
+      }),
+    );
+    onClose();
+  };
 
   useEffect(() => {
     if (!open) {
@@ -99,14 +137,60 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             </p>
 
             <nav className="mt-5 flex flex-1 flex-col gap-2 overflow-y-auto pr-1">
-              {navigation.map((item) => {
+              {mode === "site" && isBusinessRoute ? (
+                <div className="rounded-[18px] border border-avanta-navy/10 bg-white/70 p-3">
+                  <p className="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-avanta-navy/58">
+                    Навигация B2B
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {businessSectionNavigation.map((item) => (
+                      <NavLink
+                        key={item.href}
+                        to={item.href}
+                        end={item.href.endsWith("/business")}
+                        className={({ isActive }) =>
+                          cn(
+                            "inline-flex h-8 items-center rounded-full border px-3 text-xs font-semibold transition",
+                            isActive
+                              ? "border-[#2f7dad] bg-[linear-gradient(140deg,#2f7dad,#215e86)] text-white"
+                              : "border-[#b8cad7] bg-white text-avanta-navy",
+                          )
+                        }
+                      >
+                        {item.label}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
+              {businessItem ? (
+                <NavLink
+                  to={businessItem.href}
+                  className={({ isActive }) =>
+                    cn(
+                      "cut-corner-sm inline-flex items-center gap-3 rounded-[20px] border px-4 py-3.5 text-sm font-bold transition",
+                      isActive
+                        ? "border-[#2f7dad] bg-[linear-gradient(140deg,#2f7dad,#215e86)] text-white shadow-[0_16px_28px_-18px_rgba(23,73,108,0.6)]"
+                        : "border-[#8cb0c9] bg-[linear-gradient(140deg,rgba(236,245,251,0.98),rgba(225,237,247,0.96))] text-[#1d4d73]",
+                    )
+                  }
+                >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-[#1f618d] shadow-[0_8px_18px_-14px_rgba(24,58,99,0.45)]">
+                    <Building2 className="h-4 w-4" />
+                  </span>
+                  Для бизнеса
+                </NavLink>
+              ) : null}
+
+              {menuNavigation.map((item) => {
                 const Icon = navIcons[item.label] ?? Menu;
 
                 return (
                   <NavLink
                     key={item.href}
                     to={item.href}
-                    end={item.href === homeHref}
+                    end={!item.href.includes("/blog")}
                     className={({ isActive }) =>
                       cn(
                         "cut-corner-sm inline-flex items-center gap-3 rounded-[20px] border border-avanta-navy/10 bg-white/80 px-4 py-3.5 text-sm font-semibold text-avanta-navy transition",
@@ -131,12 +215,20 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                   <Link to={switchHref}>{switchLabel}</Link>
                 </Button>
               ) : null}
-              <Button asChild variant="secondary" size="lg" className="h-11">
-                <Link to={to("/?action=check-address#application")}>Проверить адрес</Link>
-              </Button>
-              <Button asChild size="lg" className="h-11 bg-[linear-gradient(135deg,#3aaa35,#178b66)]">
-                <Link to={to("/?action=connect#application")}>Подключить</Link>
-              </Button>
+              {!isBusinessRoute ? (
+                <Button asChild variant="secondary" size="lg" className="h-11">
+                  <Link to={checkAddressHref}>Проверить адрес</Link>
+                </Button>
+              ) : null}
+              {isBusinessRoute ? (
+                <Button size="lg" className="h-11 bg-[linear-gradient(135deg,#3aaa35,#178b66)]" onClick={openBusinessRequestModal}>
+                  Подключить
+                </Button>
+              ) : (
+                <Button asChild size="lg" className="h-11 bg-[linear-gradient(135deg,#3aaa35,#178b66)]">
+                  <Link to={connectHref}>Подключить</Link>
+                </Button>
+              )}
             </div>
           </motion.aside>
         </>

@@ -44,7 +44,10 @@ function buildNavigation(mode: SiteMode, basePath: string): NavItem[] {
   if (mode === "site") {
     return [
       { label: "Главная", href: prefixPath(basePath, "/") },
-      { label: "Интернет", href: prefixPath(basePath, "/internet") },
+      { label: "Интернет в квартиру", href: prefixPath(basePath, "/internet-apartment") },
+      { label: "Интернет в частный дом", href: prefixPath(basePath, "/internet-house") },
+      { label: "Интернет + ТВ", href: prefixPath(basePath, "/internet-tv") },
+      { label: "Для бизнеса", href: prefixPath(basePath, "/business") },
       { label: "Подбор тарифа", href: prefixPath(basePath, "/tariff-calculator") },
       { label: "ТВ", href: prefixPath(basePath, "/tv") },
       { label: "Видеонаблюдение", href: prefixPath(basePath, "/surveillance") },

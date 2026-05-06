@@ -1,4 +1,6 @@
-﻿import { motion } from "motion/react";
+import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   siteCameraMapPoints,
   siteEquipmentItems,
@@ -11,26 +13,60 @@ import { MediaCarousel } from "@/components/media-carousel";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { VideoCard } from "@/components/video-card";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useSiteMode } from "@/lib/site-mode";
 
 export function SiteSurveillancePage() {
+  const { to } = useSiteMode();
+
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
       <div className="container space-y-20 pt-10">
         <section className="cut-corner relative overflow-hidden rounded-[38px] bg-avanta-gradient px-6 py-10 text-white shadow-float sm:px-10">
           <div className="absolute right-0 top-0 h-40 w-40 translate-x-10 -translate-y-10 rotate-45 bg-white/10" />
-          <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/70">
-              Видеонаблюдение
-            </p>
-            <h1 className="mt-4 max-w-4xl font-display text-4xl font-bold leading-tight sm:text-5xl">
-              Облачное видеонаблюдение для квартиры, дома, двора и входной группы
-            </h1>
-            <p className="mt-5 max-w-3xl text-base leading-7 text-white/80">
-              Выберите тариф хранения архива, посмотрите оборудование и сразу оставьте заявку
-              на подбор комплекта под ваш объект.
-            </p>
-          </Reveal>
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+            <Reveal>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/70">Видеонаблюдение</p>
+                <h1 className="mt-4 max-w-4xl font-display text-4xl font-bold leading-tight sm:text-5xl">
+                  Облачное видеонаблюдение для квартиры, дома, двора и входной группы
+                </h1>
+                <p className="mt-5 max-w-3xl text-base leading-7 text-white/80">
+                  Выберите тариф хранения архива, посмотрите оборудование и сразу оставьте заявку
+                  на подбор комплекта под ваш объект.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="bg-white text-avanta-navy hover:bg-white/92 hover:text-avanta-navy">
+                    <Link to={to("/?action=surveillance#application")}>
+                      Подключить видеонаблюдение
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="secondary"
+                    size="lg"
+                    className="border-white/25 bg-white/10 text-white backdrop-blur-sm hover:border-white/40 hover:bg-white/16 hover:text-white"
+                  >
+                    <Link to={to("/surveillance#tariffs")}>Тарифы и архив</Link>
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="rounded-[28px] border border-white/20 bg-white/8 p-3 backdrop-blur-sm">
+                <div className="overflow-hidden rounded-[20px] border border-white/16 bg-[#0d3552]/20 p-3">
+                  <img
+                    src="/site/surveillance/hero-surveillance.jpg"
+                    alt="Облачное видеонаблюдение"
+                    className="h-[280px] w-full rounded-[14px] border border-white/20 bg-white object-cover object-center"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </section>
 
         <section>
@@ -50,7 +86,7 @@ export function SiteSurveillancePage() {
           </div>
         </section>
 
-        <section>
+        <section id="tariffs">
           <Reveal>
             <SectionHeader
               eyebrow="Тарифы"
@@ -151,4 +187,3 @@ export function SiteSurveillancePage() {
     </motion.div>
   );
 }
-

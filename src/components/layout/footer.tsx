@@ -37,7 +37,7 @@ export function Footer() {
                     asChild
                     variant="secondary"
                     size="lg"
-                    className="border border-white/14 bg-white/8 text-white hover:bg-white/14 hover:text-white"
+                    className="border-white/18 bg-white text-avanta-navy hover:border-avanta-green/35 hover:bg-white hover:text-avanta-green"
                   >
                     <Link to={to("/?action=connect#application")}>Оставить заявку</Link>
                   </Button>
@@ -61,7 +61,7 @@ export function Footer() {
                       href="https://avanta-telecom.ru/pay/"
                       target="_blank"
                       rel="noreferrer"
-                      className="font-semibold text-avanta-green transition hover:text-white"
+                      className="font-semibold text-white/82 transition hover:text-avanta-green"
                     >
                       Оплатить онлайн
                     </a>
@@ -99,13 +99,13 @@ export function Footer() {
                 {mode === "site" ? (
                   <>
                     <Link
-                      to={to("/internet?tab=xpon#tariffs")}
+                      to={to("/internet-apartment#tariffs")}
                       className="inline-flex w-fit justify-self-start font-medium transition hover:text-avanta-green"
                     >
                       Интернет для квартиры
                     </Link>
                     <Link
-                      to={to("/internet?tab=house#tariffs")}
+                      to={to("/internet-house#tariffs")}
                       className="inline-flex w-fit justify-self-start font-medium transition hover:text-avanta-green"
                     >
                       Интернет для частного дома

@@ -211,18 +211,10 @@ function buildOptionGroups(action: ContactAction): FormOptionGroup[] {
         ),
       },
       {
-        label: "Квартира XPON",
+        label: "Квартира",
         options: dedupeOptions(
           siteTariffs
-            .filter((item) => item.category === "xpon")
-            .map((item) => ({ value: item.name, label: `${item.name} - ${item.speed}` })),
-        ),
-      },
-      {
-        label: "Квартира FTTH",
-        options: dedupeOptions(
-          siteTariffs
-            .filter((item) => item.category === "ftth")
+            .filter((item) => item.category === "xpon" || item.category === "ftth")
             .map((item) => ({ value: item.name, label: `${item.name} - ${item.speed}` })),
         ),
       },
